@@ -1,6 +1,6 @@
 use std::fs;
 
-const FILE: &str = "prueba";
+const FILE: &str = "input";
 
 fn main() {
     let contents = fs::read_to_string(FILE).unwrap();
@@ -19,23 +19,20 @@ fn parse_input(arr: Vec<&str>) -> i32 {
 }
 
 fn winning(arr: Vec<&str>) -> i32 {
-    let a = arr.last().unwrap();
+    let a: Vec<&str> = arr.last().unwrap().split_whitespace().collect();
 
     let mut i = 0;
-    arr.first()
-        .unwrap()
-        .split_whitespace()
-        .enumerate()
-        .filter(|(_index, f)| a.contains(f))
-        .for_each(|(_index, _f)| {
+    arr.first().unwrap().split_whitespace().for_each(|f| {
+        if a.contains(&f) {
             if i == 0 {
-                println!("Empiezo {}", 1);
+                println!("Empiezo {}", f);
                 i += 1;
             } else {
                 i *= 2;
-                println!("{}", i);
+                println!("{} count: {}", f, i);
             }
-        });
+        }
+    });
 
     i
 }
@@ -47,8 +44,11 @@ mod tests {
     #[test]
     fn test_winning() {
         assert_eq!(
-            winning(Vec::from(["41 48 83 86 17", "83 86 6 31 17 9 48 53"])),
-            4
+            winning(Vec::from([
+                "41 48 83 86 17",
+                "83 86 6 31 17 9 48 53 17 9 48 53 17 9 48 53 17 9 48 53"
+            ])),
+            8
         )
     }
 }
