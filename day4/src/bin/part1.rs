@@ -1,6 +1,6 @@
 use std::fs;
 
-const FILE: &str = "input";
+const FILE: &str = "prueba";
 
 fn main() {
     let contents = fs::read_to_string(FILE).unwrap();
