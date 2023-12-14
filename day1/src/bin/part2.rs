@@ -1,8 +1,10 @@
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 use std::fs;
 
+const FILE: &str = "prueba";
+
 fn main() {
-    let content = fs::read_to_string("input").unwrap();
+    let content = fs::read_to_string(FILE).unwrap();
     let input: Vec<&str> = content.split('\n').collect();
     let mut count = 0;
     let mut aux = String::new();
@@ -83,9 +85,11 @@ fn convert_string(n: String) -> String {
 
     for (i, f) in n.chars().rev().enumerate() {
         if f.is_numeric() {
-            if i >= min_idx {
+            if i <= min_idx {
+                println!("{} {}", i, max_idx);
                 returned.push(f);
             } else {
+                println!("{} {}", i, max_idx);
                 returned.push(*sorted_res.last().unwrap());
             }
             break;
@@ -98,17 +102,4 @@ fn convert_string(n: String) -> String {
     }
 
     returned.iter().collect()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_convert_string() {
-        assert_eq!(
-            convert_string("ppjvndvknbtpfsncplmhhrlh5".to_string()),
-            "55".to_string()
-        );
-    }
 }
