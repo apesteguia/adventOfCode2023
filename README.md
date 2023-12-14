@@ -6,3 +6,5 @@
 - **Day 4** -> :star: :star:
 - **Day 5** -> Not started
 - **Day 6** -> :star: :star:
+- **Day 7** -> Not started
+- **Day 8** -> :star:
